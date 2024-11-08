@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+
+        body {
+          width: 100%;
+          height: 100%;
+          font: 400 16px/1.2 Raleway;
+          background: #FBFBFB;
+        }
+        
+        
+        
+        fieldset {
+          width: 10vw;
+          text-align: center;
+          margin-left: 20vw;
+          border: 0px none transparent;
+          background: none;
+        }
+        
+        legend {
+          width: 70vw;
+          text-align:center;
+          margin: 0 auto;
+        }
+        
+        label,
+        input,
+        button {
+          display: inline-block;
+          height: 1.2rem;
+          line-height: 1.2rem;
+          vertical-align: middle;
+          padding-left: 5px;
+          margin-top: 15px;
+          font: inherit;
+        }
+        
+        input {
+          width: 20%;
+          max-width: 200px;
+          border-radius: 4px;
+          margin-right: 60px;
+          margin-left: 100px;
+          text-align: left;
+        }
+        
+        label {
+          width: 20%;
+          text-align: left;
+         
+          margin-left: 100px;
+        }
+        
+        
+        button {
+          height: 1.5rem;
+          padding: 0 5px;
+                    margin-left: 100;
+          cursor:pointer;
+        }
+        
+        sup {
+          color: red;
+          width: 20%;
+          text-align: center;
+          margin-right: 30px;
+        }
+          
+        .button {
+            border: curved;
+            color: white;
+            padding: 5,5;
+            text-align: center;
+             border-radius: 50px ;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-left: 200px;
+            cursor: pointer;
+            background-color: rgb(0, 162, 255);
+          }
+          .Backbutton {
+            border: curved;
+            color: white;
+            padding: 5,5;
+            text-align: center;
+             border-radius: 50px ;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-left: 100;
+            cursor: pointer;
+            background-color: rgb(255, 0, 0);
+          }
+        
+        </style>
+<head>
+
+    <title>Crop Prediction</title>
+</head>
+
+<body>
+
+    <h1>Crop Prediction</h1>
+
+    <form id="form">
+      
+        <label>Please provide input for following fields:</label><br>
+      
+        <label for="temp">Temperature (C)</label>
+        <label for="humidity">Humidity %</label>
+        <br>
+        <input type="text" id="temperature" name="temperature">
+        <input type="text" id="humidity" name="humidity"><br>
+       
+        <label for="ph_level">pH level</label>
+        <label for="rainfall">Rainfall in cm</label>
+        <br>
+        <input type="text" id="ph_level" name="ph_level">
+        <input type="text" id="rainfall" name="rainfall"><br>
+       
+        <label for="nitrogen">Nitrogen ppm</label>
+        <label for="phosphorus">Phosphorus ppm</label>
+        <br>
+        <input type="text" id="nitrogen" name="nitrogen">
+        <input type="text" id="phosphorus" name="phosphorus"><br>
+        
+        <label for="potassium">Potassium ppm</label><br>
+        <input type="text" id="potassium" name="potassium"><br>
+
+      
+        <button class="button button1" Name="Predict" type="submit" onclick="predict();" value="Predict">Predict</button>
+        <button class="Backbutton" type="button" value="Back " onclick="history.go(-1)">Back </button>
+    </form>
+    
+    <h2>Predicted Crop:</h2>
+    <h3>
+    <div id="output">
+
+    </div>
+  </h3>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#form').on('submit', function (e) {
+                $.ajax({
+                    data: {
+                        temperature: $('#temperature').val(),
+                        humidity: $('#humidity').val(),
+                        ph_level: $('#ph_level').val(),
+                        rainfall: $('#rainfall').val(),
+                        nitrogen: $('#nitrogen').val(),
+                        phosphorus: $('#phosphorus').val(),
+                        potassium: $('#potassium').val(),
+                    },
+                    type: 'POST',
+                    url: '/predict'
+                })
+                    .done(function (data) 
+                    {
+                      $('#output').text("Test",data.output).show();
+                        $('#output').text(data.output).show();
+                    });
+                e.preventDefault();
+            });
+        });
+    </script>
+
+</body>
+
+</html>

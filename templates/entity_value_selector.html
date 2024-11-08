@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+    /* The container */
+    .container {
+       
+      position: relative;
+      
+      /*margin-bottom: 12px;*/
+      margin: 20px 550px;
+      cursor: pointer;
+      font-size: 22px;
+      font-weight: bold;
+    }
+</style>
+
+<style>
+    /* The container */
+    .list_container {
+       
+      position: relative;
+      
+      /*margin-bottom: 12px;*/
+      margin: 20px 550px;
+      cursor: pointer;
+      font-size: 20px;
+      
+    }
+
+    
+</style>
+
+<style>
+    .button {
+      border: curved;
+      color: rgb(171, 12, 240);
+      padding: 10px 32px;
+      text-align: center;
+      border-radius: 50px ;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      font-weight: bold;
+      margin: 20px 550px;
+      cursor: pointer;
+      background-color: hsl(161, 100%, 50%);
+    }
+</style>
+<style>
+    .Backbutton {
+      border: curved;
+      color: white;
+      padding: 10px 32px;
+      text-align: center;
+       border-radius: 50px ;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 20px 550px;
+      cursor: pointer;
+      background-color: hsl(0, 100%, 50%);
+    }
+        
+</style>
+
+
+<body>
+    <form action="/print-plot" , method="POST">
+        <br>
+        <br>
+        <label class="container" for="entity"> Choose a {{ selected_entity }}: </label>
+         
+        <br>
+        <br>
+        
+        <select class="list_container" name="selected_value" , id="entity">
+            {% for entity_value in values_in_selected_entity %}
+            <option value={{entity_value}}>{{entity_value}}</option>
+                {% endfor %}
+        </select>
+
+        <input class="button button1" type="hidden" id="hidden_entity_val" name="selected_parent_entity" value={{selected_entity}}>
+        <input  class="button button1"  type="submit" value="Show Graphs" >
+    </form>
+    
+    <form>
+        <input class="Backbutton" type="button" value="Back to Select state/crop" onclick="history.go(-1)">
+    </form>
+</body>
+
+</html>

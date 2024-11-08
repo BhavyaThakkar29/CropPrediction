@@ -1,0 +1,45 @@
+<html>
+    <style>
+        /* The container */
+        .container {
+           
+          position: relative;
+          font-weight: bold;
+          /*margin-bottom: 12px;*/
+          margin: 10px 550px;
+          cursor: pointer;
+          font-size: 22px;
+     
+        }
+    </style>  
+    
+    <style>
+        .Backbutton {
+          border: curved;
+          color: white;
+          
+           
+           border-radius: 50px ;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 20px 1100px;
+          cursor: pointer;
+          background-color: hsl(0, 100%, 50%);
+        }
+            
+    </style>    
+<head>
+    <title>
+        Comparative - Plot for {{ name }}
+    </title>
+</head>
+
+<body>
+    <label class="container">  {{ name }} </label>  
+    <input class="Backbutton" type="button" value="Back" onclick="history.go(-1)">
+   <img src={{ url}} alt="Chart" height="1000" width="1000">
+
+</body>
+
+</html>

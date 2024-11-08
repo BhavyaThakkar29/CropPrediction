@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        /* The container */
+        .container {
+           
+          position: relative;
+          
+          /*margin-bottom: 12px;*/
+          margin: 20px 550px;
+          cursor: pointer;
+          font-size: 22px;
+          font-weight: bold;
+        }
+    </style>
+    
+    <style>
+        /* The container */
+        .list_container {
+           
+          position: relative;
+          
+          /*margin-bottom: 12px;*/
+          margin: 20px 550px;
+          cursor: pointer;
+          font-size: 20px;
+          
+        }
+    
+        
+    </style>
+    
+    <style>
+        .button {
+          border: curved;
+          color: rgb(171, 12, 240);
+          padding: 10px 32px;
+          text-align: center;
+          border-radius: 50px ;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          font-weight: bold;
+          margin: 20px 550px;
+          cursor: pointer;
+          background-color: hsl(161, 100%, 50%);
+        }
+    </style>
+    <style>
+        .Backbutton {
+          border: curved;
+          color: white;
+          padding: 10px 32px;
+          text-align: center;
+           border-radius: 50px ;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 20px 550px;
+          cursor: pointer;
+          background-color: hsl(0, 100%, 50%);
+        }
+            
+    </style>
+<head>
+    <title>
+        Crop Selector
+    </title>
+</head>
+
+<body>
+    <form id="form">
+                 
+        <br>
+        <br>
+        <label class="container" for="entity">Cost of Crop Production per Quintal- Choose a Crop: </label>
+        <br>
+        <br>
+        
+        <select class="list_container" name="selected_crop" id="selected_crop">
+            {% for Crop in all_crops %}
+            <option value={{Crop}}>{{Crop}}</option>
+                {% endfor %}
+        </select>
+        <input class="button button1" type="hidden" id="hidden_entity_val" name="selected_entity" value={{selected_entity}}>
+        <input class="button button1" type="submit">
+        <input class="Backbutton" type="button" value="Back" onclick="go_home()">
+    </form>
+    <img src="" alt="Chart" id="img_plot">   
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#form').on('submit', function (e) {
+            $.ajax({
+                data: {
+                    selected_crop: $('#selected_crop').val(),
+                    selected_entity: $('#selected_entity').val(),
+                },
+                type: 'POST',
+                url: '/get_crop_plot'
+            })
+                .done(function (data) 
+                {
+                  //$('#output').text("Test",data.output).show();
+                    $('#img_plot').attr("src", data.url).show();
+                });
+            e.preventDefault();
+        });
+    });
+</script>
+
+
+<script>
+    function go_home() 
+    {
+        location.replace("http://127.0.0.1:5000/graphs")
+    }
+     
+    
+      </script>
+
+
+</body>
+
+</html>
+ 
