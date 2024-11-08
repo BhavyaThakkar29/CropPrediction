@@ -1,0 +1,10 @@
+/.ipynb_checkpoints
+/.venv
+/.vscode
+/Playground.ipynb
+/poetry.lock
+/pyproject.toml
+/README.md
+/Reference-01 Crop Yield  IJCSE-V7I5P101.pdf
+/Reference-02 Crop Yield Estimation using IBMCognos.pdf
+/tests
